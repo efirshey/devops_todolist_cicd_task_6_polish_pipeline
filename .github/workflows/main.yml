@@ -34,7 +34,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  DockerImageName: efirshey/todoapp
+  DockerImageName: todoapp
 
 jobs:
   python-ci:
@@ -118,8 +118,7 @@ jobs:
         with:
           push: true
           context: ./src
-          tags: ${{ env.DockerImageName }}:${{ github.sha }}
-
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DockerImageName }}:${{ github.sha }}
 
   helm-ci:
     name: Helm CI
